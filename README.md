@@ -4,7 +4,10 @@ A Jellyfin plugin that adds a "Share" button to movie, episode, season and serie
 
 ## Requirements
 
-- Jellyfin 10.11 or later (built against the 10.11 ABI / .NET 9)
+- Jellyfin 12.0 or later (built against the 12.1 ABI / .NET 10)
+- For Jellyfin 10.11 use the 1.x line instead — a 2.x build will not load on it.
+  The catalogue picks the right one automatically: Jellyfin only offers versions
+  whose `targetAbi` it satisfies.
 - [Jellyfin Share Backend](https://github.com/monxas/jellyfin-share-backend) running and configured
 
 ## Installation
@@ -28,13 +31,14 @@ A Jellyfin plugin that adds a "Share" button to movie, episode, season and serie
    The version in the folder name must be four parts (`1.2.3.0`). Jellyfin sorts
    plugin folders by it, so a locally built DLL needs a higher version than any
    copy installed from the catalogue or the catalogue's will win.
+
 3. Restart Jellyfin
 
 ## Configuration
 
 1. Go to **Dashboard → Plugins → Jellyfin Share**
 2. Enter your backend URL (e.g., `http://localhost:8097` or `https://share.yourdomain.com`).
-   This is how *this server* reaches the backend, which behind Docker or a reverse
+   This is how _this server_ reaches the backend, which behind Docker or a reverse
    proxy is not the address a viewer opens - the backend reports that one itself.
 3. Enter your backend API key
 4. Configure the defaults the share dialog starts with: expiry in days, whether
@@ -121,7 +125,7 @@ cd jellyfin-share-plugin
 # Build
 dotnet build -c Release
 
-# The DLL will be in bin/Release/net9.0/
+# The DLL will be in bin/Release/net10.0/
 ```
 
 ## Troubleshooting
